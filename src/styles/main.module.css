@@ -6,3 +6,15 @@
   border-radius: 1rem;
   margin: 2rem 0;
 }
+input,
+textarea {
+  border-radius: 5px;
+  box-shadow: none;
+  border: 1px solid black;
+  resize: none;
+  padding: 0.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+}

@@ -6,6 +6,7 @@ class App extends Component {
     super();
     this.state = {
       preview: false,
+      data: {},
     };
   }
   handleClick = () => {

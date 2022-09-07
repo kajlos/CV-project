@@ -1,0 +1,12 @@
+.general {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.formElement {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 1rem;
+}
+.textAreaDiv {
+  grid-column: 1/3;
+}
