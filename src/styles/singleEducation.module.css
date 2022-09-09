@@ -1,0 +1,25 @@
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 2rem;
+}
+.formElement {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0;
+}
+.deleteButton {
+  background-color: hsl(0, 100%, 70%);
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  align-self: flex-end;
+}
+.deleteButton:hover {
+  background-color: hsl(0, 100%, 60%);
+}
+.singleDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 0 1rem;
+}
