@@ -1,14 +1,14 @@
 import React from 'react';
 import style from '../styles/single.module.css';
-export default class SingleEducation extends React.Component {
+export default class SingleExperience extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.id,
-      school: '',
+      company: '',
       startDate: '',
       endDate: '',
-      city: '',
+      position: '',
     };
   }
   handleInput = e => {
@@ -26,8 +26,8 @@ export default class SingleEducation extends React.Component {
       <div className={style.singleDiv}>
         <form className={style.form}>
           <div className={style.formElement}>
-            <label htmlFor="city">City</label>
-            <input id="city" onInput={this.handleInput} value={this.state.city}></input>
+            <label htmlFor="company">Company Name</label>
+            <input id="company" onInput={this.handleInput} value={this.state.company}></input>
           </div>
           <div className={style.formElement}>
             <label htmlFor="startDate">Start date</label>
@@ -39,8 +39,8 @@ export default class SingleEducation extends React.Component {
             ></input>
           </div>
           <div className={style.formElement}>
-            <label htmlFor="school">School</label>
-            <input id="school" onInput={this.handleInput} value={this.state.school}></input>
+            <label htmlFor="position">Position</label>
+            <input id="position" onInput={this.handleInput} value={this.state.position}></input>
           </div>
           <div className={style.formElement}>
             <label htmlFor="endDate">End date</label>

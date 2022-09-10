@@ -5,7 +5,11 @@ export default class Education extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      component: [],
+      component: [
+        {
+          id: uniqid(),
+        },
+      ],
       education: [],
     };
   }
