@@ -5,7 +5,11 @@ export default class Experience extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      component: [],
+      component: [
+        {
+          id: uniqid(),
+        },
+      ],
       experiences: [],
     };
   }
@@ -20,16 +24,26 @@ export default class Experience extends React.Component {
   handleDelete = id => {
     let filteredComponent = this.state.component.filter(com => com.id !== id);
     let filteredExperiences = this.state.experiences.filter(exp => exp.id !== id);
-    this.setState({
-      component: filteredComponent,
-      experiences: filteredExperiences,
-    });
+    this.setState(
+      {
+        component: filteredComponent,
+        experiences: filteredExperiences,
+      },
+      () => {
+        this.props.setExperience(this.state.experiences);
+      }
+    );
   };
   handleInput = obj => {
     let filteredExperiences = this.state.experiences.filter(exp => exp.id !== obj.id);
-    this.setState({
-      experiences: [...filteredExperiences, obj],
-    });
+    this.setState(
+      {
+        experiences: [...filteredExperiences, obj],
+      },
+      () => {
+        this.props.setExperience(this.state.experiences);
+      }
+    );
   };
   render() {
     return (

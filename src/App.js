@@ -14,14 +14,23 @@ class App extends Component {
       preview: !this.state.preview,
     });
   };
+  setData = data => {
+    this.setState({
+      data: data,
+    });
+  };
   render() {
     return (
       <div className="app">
-        <p>Hello</p>
+        <h1>CV Creator</h1>
         <button type="button" onClick={this.handleClick}>
           Preview
         </button>
-        {this.state.preview ? <Preview /> : <Creator />}
+        {this.state.preview ? (
+          <Preview data={this.state.data} />
+        ) : (
+          <Creator setData={this.setData} />
+        )}
       </div>
     );
   }

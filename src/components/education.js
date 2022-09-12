@@ -24,16 +24,26 @@ export default class Education extends React.Component {
   handleDelete = id => {
     let filteredComponent = this.state.component.filter(com => com.id !== id);
     let filteredEducation = this.state.education.filter(edu => edu.id !== id);
-    this.setState({
-      component: filteredComponent,
-      education: filteredEducation,
-    });
+    this.setState(
+      {
+        component: filteredComponent,
+        education: filteredEducation,
+      },
+      () => {
+        this.props.setEducation(this.state.education);
+      }
+    );
   };
   handleInput = obj => {
     let filteredEducation = this.state.education.filter(edu => edu.id !== obj.id);
-    this.setState({
-      education: [...filteredEducation, obj],
-    });
+    this.setState(
+      {
+        education: [...filteredEducation, obj],
+      },
+      () => {
+        this.props.setEducation(this.state.education);
+      }
+    );
   };
   render() {
     return (

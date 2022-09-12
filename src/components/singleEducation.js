@@ -14,6 +14,11 @@ export default class SingleEducation extends React.Component {
   handleInput = e => {
     let value = e.target.value;
     let id = e.target.id;
+    if (id === 'startDate' || id === 'endDate') {
+      value = e.target.value.replace(/\D/, '');
+    } else {
+      value = e.target.value;
+    }
     this.setState(
       {
         [id]: value,
@@ -33,7 +38,7 @@ export default class SingleEducation extends React.Component {
             <label htmlFor="startDate">Start date</label>
             <input
               id="startDate"
-              type="date"
+              placeholder="year"
               onInput={this.handleInput}
               value={this.state.startDate}
             ></input>
@@ -46,7 +51,7 @@ export default class SingleEducation extends React.Component {
             <label htmlFor="endDate">End date</label>
             <input
               id="endDate"
-              type="date"
+              placeholder="year"
               onInput={this.handleInput}
               value={this.state.endDate}
             ></input>
