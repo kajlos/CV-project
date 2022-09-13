@@ -1,13 +1,15 @@
 {
   "files": {
     "main.css": "/kajlos/CV-project/static/css/main.99e25b4c.css",
-    "main.js": "/kajlos/CV-project/static/js/main.8adcf1d4.js",
+    "main.js": "/kajlos/CV-project/static/js/main.9e43c049.js",
+    "static/js/787.34a20539.chunk.js": "/kajlos/CV-project/static/js/787.34a20539.chunk.js",
     "index.html": "/kajlos/CV-project/index.html",
     "main.99e25b4c.css.map": "/kajlos/CV-project/static/css/main.99e25b4c.css.map",
-    "main.8adcf1d4.js.map": "/kajlos/CV-project/static/js/main.8adcf1d4.js.map"
+    "main.9e43c049.js.map": "/kajlos/CV-project/static/js/main.9e43c049.js.map",
+    "787.34a20539.chunk.js.map": "/kajlos/CV-project/static/js/787.34a20539.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.99e25b4c.css",
-    "static/js/main.8adcf1d4.js"
+    "static/js/main.9e43c049.js"
   ]
 }
