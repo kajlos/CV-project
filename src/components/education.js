@@ -5,28 +5,21 @@ export default class Education extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      component: [
-        {
-          id: uniqid(),
-        },
-      ],
-      education: [],
+      education: this.props.data || [],
     };
   }
   handleClick = () => {
-    let newComponent = {
+    let newEducation = {
       id: uniqid(),
     };
     this.setState({
-      component: [...this.state.component, newComponent],
+      education: [...this.state.education, newEducation],
     });
   };
   handleDelete = id => {
-    let filteredComponent = this.state.component.filter(com => com.id !== id);
     let filteredEducation = this.state.education.filter(edu => edu.id !== id);
     this.setState(
       {
-        component: filteredComponent,
         education: filteredEducation,
       },
       () => {
@@ -49,11 +42,11 @@ export default class Education extends React.Component {
     return (
       <div>
         <h2>Education</h2>
-        {this.state.component.map(x => (
+        {this.state.education.map(x => (
           <SingleEducation
             handleInput={this.handleInput}
             handleDelete={this.handleDelete}
-            id={x.id}
+            data={x}
             key={x.id}
           />
         ))}

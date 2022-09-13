@@ -7,9 +7,9 @@ export default class Creator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      general: {},
-      education: [],
-      experience: [],
+      general: this.props.data.general || {},
+      education: this.props.data.education || [],
+      experience: this.props.data.experience || [],
     };
   }
   setGeneral = data => {
@@ -45,9 +45,9 @@ export default class Creator extends React.Component {
   render() {
     return (
       <div className="container">
-        <General setGeneral={this.setGeneral} />
-        <Education setEducation={this.setEducation} />
-        <Experience setExperience={this.setExperience} />
+        <General setGeneral={this.setGeneral} data={this.state.general} />
+        <Education setEducation={this.setEducation} data={this.state.education} />
+        <Experience setExperience={this.setExperience} data={this.state.experience} />
       </div>
     );
   }

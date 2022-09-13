@@ -5,28 +5,21 @@ export default class Experience extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      component: [
-        {
-          id: uniqid(),
-        },
-      ],
-      experiences: [],
+      experiences: this.props.data || [],
     };
   }
   handleClick = () => {
-    let newComponent = {
+    let newExperiences = {
       id: uniqid(),
     };
     this.setState({
-      component: [...this.state.component, newComponent],
+      experiences: [...this.state.experiences, newExperiences],
     });
   };
   handleDelete = id => {
-    let filteredComponent = this.state.component.filter(com => com.id !== id);
     let filteredExperiences = this.state.experiences.filter(exp => exp.id !== id);
     this.setState(
       {
-        component: filteredComponent,
         experiences: filteredExperiences,
       },
       () => {
@@ -49,11 +42,11 @@ export default class Experience extends React.Component {
     return (
       <div>
         <h2>Experience</h2>
-        {this.state.component.map(x => (
+        {this.state.experiences.map(x => (
           <SingleExperience
             handleInput={this.handleInput}
             handleDelete={this.handleDelete}
-            id={x.id}
+            data={x}
             key={x.id}
           />
         ))}

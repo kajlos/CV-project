@@ -4,11 +4,11 @@ export default class SingleEducation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
-      school: '',
-      startDate: '',
-      endDate: '',
-      city: '',
+      id: this.props.data.id,
+      school: this.props.data.school || '',
+      startDate: this.props.data.startDate || '',
+      endDate: this.props.data.endDate || '',
+      city: this.props.data.city || '',
     };
   }
   handleInput = e => {

@@ -4,11 +4,11 @@ export default class General extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      number: '',
-      about: '',
+      firstName: this.props.data.firstName || '',
+      lastName: this.props.data.lastName || '',
+      email: this.props.data.email || '',
+      number: this.props.data.number || '',
+      about: this.props.data.about || '',
     };
   }
   handleChange = e => {

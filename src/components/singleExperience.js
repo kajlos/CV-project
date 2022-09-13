@@ -4,11 +4,11 @@ export default class SingleExperience extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
-      company: '',
-      startDate: '',
-      endDate: '',
-      position: '',
+      id: this.props.data.id,
+      company: this.props.data.company || '',
+      startDate: this.props.data.startDate || '',
+      endDate: this.props.data.endDate || '',
+      position: this.props.data.position || '',
     };
   }
   handleInput = e => {
