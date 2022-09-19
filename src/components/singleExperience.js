@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import style from '../styles/single.module.css';
-export default class SingleExperience extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      id: this.props.data.id,
-      company: this.props.data.company || '',
-      startDate: this.props.data.startDate || '',
-      endDate: this.props.data.endDate || '',
-      position: this.props.data.position || '',
-    };
-  }
-  handleInput = e => {
+export default function SingleExperience(props) {
+  const initialExperience = {
+    id: props.data.id,
+    company: props.data.company || '',
+    startDate: props.data.startDate || '',
+    endDate: props.data.endDate || '',
+    position: props.data.position || '',
+  };
+  const [experience, setExperience] = useState(initialExperience);
+  const handleInput = e => {
     let value = e.target.value;
     let id = e.target.id;
     if (id === 'startDate' || id === 'endDate') {
@@ -19,51 +17,45 @@ export default class SingleExperience extends React.Component {
     } else {
       value = e.target.value;
     }
-    this.setState(
-      {
-        [id]: value,
-      },
-      () => this.props.handleInput(this.state)
-    );
+    setExperience({ ...experience, [id]: value });
   };
-  render() {
-    return (
-      <div className={style.singleDiv}>
-        <form className={style.form}>
-          <div className={style.formElement}>
-            <label htmlFor="company">Company Name</label>
-            <input id="company" onInput={this.handleInput} value={this.state.company}></input>
-          </div>
-          <div className={style.formElement}>
-            <label htmlFor="startDate">Start date</label>
-            <input
-              id="startDate"
-              onInput={this.handleInput}
-              value={this.state.startDate}
-              placeholder="year"
-            ></input>
-          </div>
-          <div className={style.formElement}>
-            <label htmlFor="position">Position</label>
-            <input id="position" onInput={this.handleInput} value={this.state.position}></input>
-          </div>
-          <div className={style.formElement}>
-            <label htmlFor="endDate">End date</label>
-            <input
-              id="endDate"
-              onInput={this.handleInput}
-              value={this.state.endDate}
-              placeholder="year"
-            ></input>
-          </div>
-        </form>
-        <button
-          className={style.deleteButton}
-          onClick={() => this.props.handleDelete(this.state.id)}
-        >
-          Delete
-        </button>
-      </div>
-    );
-  }
+  useEffect(() => {
+    props.handleInput(experience);
+  }, [experience]);
+  console.log('single experience');
+  return (
+    <div className={style.singleDiv}>
+      <form className={style.form}>
+        <div className={style.formElement}>
+          <label htmlFor="company">Company Name</label>
+          <input id="company" onInput={handleInput} value={experience.company}></input>
+        </div>
+        <div className={style.formElement}>
+          <label htmlFor="startDate">Start date</label>
+          <input
+            id="startDate"
+            onInput={handleInput}
+            value={experience.startDate}
+            placeholder="year"
+          ></input>
+        </div>
+        <div className={style.formElement}>
+          <label htmlFor="position">Position</label>
+          <input id="position" onInput={handleInput} value={experience.position}></input>
+        </div>
+        <div className={style.formElement}>
+          <label htmlFor="endDate">End date</label>
+          <input
+            id="endDate"
+            onInput={handleInput}
+            value={experience.endDate}
+            placeholder="year"
+          ></input>
+        </div>
+      </form>
+      <button className={style.deleteButton} onClick={() => props.handleDelete(experience.id)}>
+        Delete
+      </button>
+    </div>
+  );
 }

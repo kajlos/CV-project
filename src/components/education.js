@@ -1,57 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SingleEducation from './singleEducation';
 import uniqid from 'uniqid';
-export default class Education extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      education: this.props.data || [],
-    };
-  }
-  handleClick = () => {
+export default function Education(props) {
+  const initialEducation = props.data || [];
+  const [education, setEducation] = useState(initialEducation);
+  const handleClick = () => {
     let newEducation = {
       id: uniqid(),
     };
-    this.setState({
-      education: [...this.state.education, newEducation],
+    setEducation([...education, newEducation]);
+  };
+  const handleDelete = id => {
+    let filteredEducation = education.filter(edu => edu.id !== id);
+    setEducation(filteredEducation);
+  };
+  const handleInput = obj => {
+    let f = education.map(edu => {
+      if (edu.id === obj.id) {
+        return { ...edu, ...obj };
+      } else {
+        return edu;
+      }
     });
+    setEducation(f);
   };
-  handleDelete = id => {
-    let filteredEducation = this.state.education.filter(edu => edu.id !== id);
-    this.setState(
-      {
-        education: filteredEducation,
-      },
-      () => {
-        this.props.setEducation(this.state.education);
-      }
-    );
-  };
-  handleInput = obj => {
-    let filteredEducation = this.state.education.filter(edu => edu.id !== obj.id);
-    this.setState(
-      {
-        education: [...filteredEducation, obj],
-      },
-      () => {
-        this.props.setEducation(this.state.education);
-      }
-    );
-  };
-  render() {
-    return (
-      <div>
-        <h2>Education</h2>
-        {this.state.education.map(x => (
-          <SingleEducation
-            handleInput={this.handleInput}
-            handleDelete={this.handleDelete}
-            data={x}
-            key={x.id}
-          />
-        ))}
-        <button onClick={this.handleClick}>Add</button>
-      </div>
-    );
-  }
+  useEffect(() => {
+    props.setEducation(education);
+  }, [education]);
+  return (
+    <div>
+      <h2>Education</h2>
+      {education.map(x => (
+        <SingleEducation
+          handleInput={handleInput}
+          handleDelete={handleDelete}
+          data={x}
+          key={x.id}
+        />
+      ))}
+      <button onClick={handleClick}>Add</button>
+    </div>
+  );
 }

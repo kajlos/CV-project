@@ -1,57 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SingleExperience from './singleExperience';
 import uniqid from 'uniqid';
-export default class Experience extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      experiences: this.props.data || [],
-    };
-  }
-  handleClick = () => {
+export default function Experience(props) {
+  const initialExperiences = props.data || [];
+  const [experiences, setExperiences] = useState(initialExperiences);
+  const handleClick = () => {
     let newExperiences = {
       id: uniqid(),
     };
-    this.setState({
-      experiences: [...this.state.experiences, newExperiences],
+    setExperiences([...experiences, newExperiences]);
+  };
+  const handleDelete = id => {
+    let filteredExperiences = experiences.filter(exp => exp.id !== id);
+
+    setExperiences(filteredExperiences);
+  };
+  const handleInput = obj => {
+    let f = experiences.map(exp => {
+      if (exp.id === obj.id) {
+        return { ...exp, ...obj };
+      } else {
+        return exp;
+      }
     });
+    setExperiences(f);
   };
-  handleDelete = id => {
-    let filteredExperiences = this.state.experiences.filter(exp => exp.id !== id);
-    this.setState(
-      {
-        experiences: filteredExperiences,
-      },
-      () => {
-        this.props.setExperience(this.state.experiences);
-      }
-    );
-  };
-  handleInput = obj => {
-    let filteredExperiences = this.state.experiences.filter(exp => exp.id !== obj.id);
-    this.setState(
-      {
-        experiences: [...filteredExperiences, obj],
-      },
-      () => {
-        this.props.setExperience(this.state.experiences);
-      }
-    );
-  };
-  render() {
-    return (
-      <div>
-        <h2>Experience</h2>
-        {this.state.experiences.map(x => (
-          <SingleExperience
-            handleInput={this.handleInput}
-            handleDelete={this.handleDelete}
-            data={x}
-            key={x.id}
-          />
-        ))}
-        <button onClick={this.handleClick}>Add</button>
-      </div>
-    );
-  }
+  useEffect(() => {
+    props.setExperience(experiences);
+  }, [experiences]);
+  console.log('experience');
+  return (
+    <div>
+      <h2>Experience</h2>
+      {experiences.map(x => (
+        <SingleExperience
+          handleInput={handleInput}
+          handleDelete={handleDelete}
+          data={x}
+          key={x.id}
+        />
+      ))}
+      <button onClick={handleClick}>Add</button>
+    </div>
+  );
 }
